@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="ajax-script.js"></script> -->
     <title>Document</title>
     <style>
         div {
@@ -33,11 +35,16 @@
         p {
             margin-bottom: 10px;
         }
+
+        #add-btn {
+            float: right;
+        }
     </style>
 </head>
 
 <body>
     <div>
+        <button id="add-btn" class="btn btn-success">Add</button>
         <?php
         require_once 'connection.php';
 
@@ -47,7 +54,11 @@
         if (isset($_POST['delete'])) {
             $query = "DELETE FROM news WHERE id= " . $_POST['id'];
             if ($con->query($query) === TRUE) {
-                echo "<script>alert('Successfully delete user')</script>";
+                echo "<script>
+                    if(confirm('Successfully delete new')){
+                        location.replace('http://localhost/Newsletter/news.php')
+                    }
+                </script>";
             }
         }
 
@@ -60,7 +71,7 @@
                 echo "<H3>" . $row["resume"] . "</H3>";
                 echo "<p>" . $row["contenu"] . "</p>";
                 echo "<input type='submit' name='delete' value='Delete' class='btn btn-danger '/> ";
-                echo "<a href='edit.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a>";
+                echo "<a href='edit.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</form>";
             }
         } else {
