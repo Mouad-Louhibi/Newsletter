@@ -42,9 +42,12 @@
 
 <body>
     <div>
-        <a href="http://localhost/Newsletter/add.php"><button id="add-btn" class="btn btn-success">Add</button></a>
         <?php
         require_once 'connection.php';
+
+        if ($userow['rule'] === 'admin') {
+            echo "<a href='http://localhost/Newsletter/add.php'><button id='add-btn' class='btn btn-success'>Add</button></a>";
+        }
 
         $query = "SELECT * FROM news";
         $result = $con->query($query);
@@ -68,8 +71,10 @@
                 echo "<H1>" . $row["title"] . "</H1>";
                 echo "<H3>" . $row["resume"] . "</H3>";
                 echo "<p>" . $row["contenu"] . "</p>";
-                echo "<input type='submit' name='delete' value='Delete' class='btn btn-danger '/> ";
-                echo "<a href='edit.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
+                if ($userow['rule'] === 'admin') {
+                    echo "<input type='submit' name='delete' value='Delete' class='btn btn-danger '/> ";
+                    echo "<a href='edit.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
+                }
                 echo "</form>";
             }
         } else {

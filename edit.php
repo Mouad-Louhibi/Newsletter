@@ -29,9 +29,9 @@
                 $resume = $_POST['resume'];
                 $contenu = $_POST['contenu'];
 
-                $sql = "UPDATE news SET title='{$title}', resume='{$resume}',
-            contenu='{$contenu}'
-            WHERE id=" . $_POST['newid'];
+                $sql = "UPDATE news
+                        SET title='{$title}', resume='{$resume}', contenu='{$contenu}'
+                        WHERE id=" . $_POST['newid'];
 
                 if ($con->query($sql) === TRUE) {
                     echo "<div class='alert alert-success'>Successfully updated user</div>";

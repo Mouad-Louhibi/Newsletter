@@ -30,7 +30,7 @@
                 $contenu = $_POST['contenu'];
 
                 $sql = "INSERT INTO news(title,resume,contenu)
-            VALUES('$title','$resume','$contenu')";
+                        VALUES('$title','$resume','$contenu')";
 
                 if ($con->query($sql) === TRUE) {
                     echo "<div class='alert alert-success'>Successfully added new</div>";
